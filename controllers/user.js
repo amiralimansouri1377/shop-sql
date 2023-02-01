@@ -22,3 +22,15 @@ exports.getProduct = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getProducts = (req, res, next) => {
+  Product.findAll()
+    .then(products => {
+      res.render('user/products', {
+        pageTitle: 'Products',
+        path: '/products',
+        products,
+      });
+    })
+    .catch(err => console.log(err));
+};
