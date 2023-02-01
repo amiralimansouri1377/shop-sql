@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../bootstarp/head.ejs') %>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include('./nav.ejs') %>
+    <main>
+      <div class="container">
+        <form action="/admin/add-product" method="post">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Title"
+              name="title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="image-url" class="form-label">Image URL</label>
+            <input
+              type="text"
+              class="form-control"
+              id="image-url"
+              placeholder="Image URL"
+              name="imageUrl"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              placeholder="Price"
+              name="price"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              rows="3"
+              name="description"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-outline-primary">
+            Add Product
+          </button>
+        </form>
+      </div>
+    </main>
+    <%- include('../bootstarp/script.ejs') %>
+  </body>
+</html>

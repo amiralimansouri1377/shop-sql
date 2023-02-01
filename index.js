@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 
 const adminRoutes = require('./routes/admin');
 
+const sequelize = require('./utils/database');
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -16,4 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/admin', adminRoutes);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch(err => console.log(err));
