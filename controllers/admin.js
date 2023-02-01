@@ -34,3 +34,15 @@ exports.getProducts = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getDeleteProduct = (req, res, next) => {
+  console.log(req.params);
+  Product.findByPk(req.params.productId)
+    .then(product => {
+      return product.destroy();
+    })
+    .then(product => {
+      res.redirect('/admin/products');
+    })
+    .catch(err => console.log(err));
+};

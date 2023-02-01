@@ -25,7 +25,11 @@
               <p class="product-description"><%= product.description %></p>
               <div class="d-flex justify-content-between mt-4">
                 <a class="btn btn-outline-warning" href="#">Edit</a>
-                <a class="btn btn-outline-danger" href="#">Delete</a>
+                <a
+                  class="btn btn-outline-danger"
+                  href="/admin/delete-product/<%= product.id %>"
+                  >Delete</a
+                >
               </div>
             </div>
           </div>
