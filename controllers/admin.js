@@ -22,3 +22,15 @@ exports.postAddProduct = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getProducts = (req, res, next) => {
+  Product.findAll()
+    .then(products => {
+      res.render('admin/products', {
+        pageTitle: 'Admin | Products',
+        path: '/admin/products',
+        products,
+      });
+    })
+    .catch(err => console.log(err));
+};
