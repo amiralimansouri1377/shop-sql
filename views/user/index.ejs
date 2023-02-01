@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../bootstarp/head.ejs') %>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include('./nav.ejs') %>
+    <main>
+      <div class="container">
+        <% if (products.length) { %>
+        <div class="row align-items-stretch products-list">
+          <% products.forEach(product => { %>
+          <div class="col col-12 col-md-4">
+            <div class="product">
+              <div class="product-img">
+                <img src="<%= product.imageUrl %>" alt="<%= product.title %>" />
+              </div>
+              <h3 class="product-title"><%= product.title %></h3>
+              <strong class="product-price">$<%= product.price %></strong>
+              <p class="product-description"><%= product.description %></p>
+              <div class="d-flex justify-content-between mt-4">
+                <a class="link link-secondary" href="#">Details</a>
+                <a class="btn btn-outline-primary" href="#">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+        <h4 class="text-info">Products not found</h4>
+        <% } %>
+      </div>
+    </main>
+    <%- include('../bootstarp/script.ejs') %>
+  </body>
+</html>
