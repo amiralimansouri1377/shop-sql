@@ -24,7 +24,11 @@
               <strong class="product-price">$<%= product.price %></strong>
               <p class="product-description"><%= product.description %></p>
               <div class="d-flex justify-content-between mt-4">
-                <a class="btn btn-outline-warning" href="#">Edit</a>
+                <a
+                  class="btn btn-outline-warning"
+                  href="/admin/edit-product/<%= product.id %>?edit=true"
+                  >Edit</a
+                >
                 <a
                   class="btn btn-outline-danger"
                   href="/admin/delete-product/<%= product.id %>"
