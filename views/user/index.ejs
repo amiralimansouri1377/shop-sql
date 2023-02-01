@@ -24,7 +24,11 @@
               <strong class="product-price">$<%= product.price %></strong>
               <p class="product-description"><%= product.description %></p>
               <div class="d-flex justify-content-between mt-4">
-                <a class="link link-secondary" href="#">Details</a>
+                <a
+                  class="link link-secondary"
+                  href="/products/<%= product.id %>"
+                  >Details</a
+                >
                 <a class="btn btn-outline-primary" href="#">Add to Cart</a>
               </div>
             </div>

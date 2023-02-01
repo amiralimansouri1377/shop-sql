@@ -11,3 +11,14 @@ exports.getIndex = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getProduct = (req, res, next) => {
+  Product.findByPk(req.params.productId)
+    .then(product => {
+      res.render('user/details', {
+        path: '/products',
+        product,
+      });
+    })
+    .catch(err => console.log(err));
+};
