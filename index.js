@@ -10,6 +10,8 @@ const sequelize = require('./utils/database');
 
 const User = require('./models/user');
 const Product = require('./models/product');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 const app = express();
 
@@ -33,7 +35,13 @@ app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
 User.hasMany(Product, { constraints: true, onDelete: 'CASCADE' });
-Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+Product.belongsTo(User);
+
+User.hasOne(Cart, { constraints: true, onDelete: 'CASCADE' });
+Cart.belongsTo(User);
+
+Product.belongsToMany(Cart, { through: CartItem });
+Cart.belongsToMany(Product, { through: CartItem });
 
 sequelize
   .sync()
