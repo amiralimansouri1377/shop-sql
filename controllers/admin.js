@@ -17,7 +17,8 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const body = req.body;
-  Product.create({ ...body })
+  req.user
+    .createProduct({ ...body })
     .then(product => {
       res.redirect('/admin/products');
     })
@@ -25,7 +26,8 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  req.user
+    .getProducts()
     .then(products => {
       res.render('admin/products', {
         pageTitle: 'Admin | Products',
