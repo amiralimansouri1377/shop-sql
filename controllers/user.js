@@ -134,3 +134,16 @@ exports.getAddOrder = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getOrder = (req, res, next) => {
+  req.user
+    .getOrders({ include: Product })
+    .then(orders => {
+      res.render('user/order', {
+        pageTitle: 'Order',
+        path: '/order',
+        orders,
+      });
+    })
+    .catch(err => console.log(err));
+};

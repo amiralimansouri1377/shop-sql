@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../bootstarp/head.ejs') %>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include('./nav.ejs') %>
+    <main>
+      <div class="container">
+        <% if (orders.length) { %>
+        <div class="orders">
+          <ul>
+            <% orders.forEach(order => { %>
+            <li>
+              <strong>Order <%= order.id %></strong>
+              <ul>
+                <% order.products.forEach(product => { %>
+                <li>
+                  <p>Title: <%= product.title %></p>
+                  <p>Quantity: <%= product.orderItem.quantity %></p>
+                  <p>Cost: $<%= product.orderItem.cost %></p>
+                </li>
+                <% }) %>
+              </ul>
+              <p>Cost: $<%= order.cost %></p>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+        <% } else { %>
+        <h4 class="text-info">No Orders found</h4>
+        <% } %>
+      </div>
+    </main>
+    <%- include('../bootstarp/script.ejs') %>
+  </body>
+</html>
