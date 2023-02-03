@@ -43,6 +43,18 @@
   height: 300px;
 }
 
+.cart {
+  width: 700px;
+  margin: 0 auto;
+  border: 2px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cart-img img {
+  width: 50px;
+}
+
 @media (max-width: 992px) {
   .products-list .col:not(:last-child) {
     margin-bottom: 20px;

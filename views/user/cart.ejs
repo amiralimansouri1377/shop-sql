@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../bootstarp/head.ejs') %>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <%- include('./nav.ejs') %>
+    <main>
+      <div class="container">
+        <% if (products.length) { %>
+        <div class="text-center">
+          <% products.forEach(product => { %>
+          <div
+            class="cart d-flex justify-content-between align-items-center mb-3"
+          >
+            <div class="cart-img">
+              <img src="<%= product.imageUrl %>" alt="<%= product.title %>" />
+            </div>
+            <div class="cart-title">
+              Title: <strong><%= product.title %></strong>
+            </div>
+            <div class="cart-quantity">
+              Quantity: <strong><%= product.cartItem.quantity %></strong>
+            </div>
+            <div class="cart-cost">
+              Price: <strong>$<%= product.price %></strong>
+            </div>
+            <div class="cart-cost">
+              Cost: <strong>$<%= product.cartItem.cost %></strong>
+            </div>
+            <a class="btn btn-outline-danger" href="#">Delete</a>
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+        <h3 class="text-info">No cart found!</h3>
+        <% } %>
+      </div>
+    </main>
+    <%- include('../bootstarp/script.ejs') %>
+  </body>
+</html>
