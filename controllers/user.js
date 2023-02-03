@@ -1,3 +1,4 @@
+const Cart = require('../models/cart');
 const Product = require('../models/product');
 
 exports.getIndex = (req, res, next) => {
@@ -80,6 +81,22 @@ exports.getCart = (req, res, next) => {
         path: '/cart',
         products,
       });
+    })
+    .catch(err => console.log(err));
+};
+
+exports.getDeleteCart = (req, res, next) => {
+  const productId = req.params.productId;
+  req.user
+    .getCart()
+    .then(cart => {
+      return cart.getProducts({ where: { id: productId } });
+    })
+    .then(([product]) => {
+      return product.cartItem.destroy();
+    })
+    .then(() => {
+      res.redirect('/cart');
     })
     .catch(err => console.log(err));
 };

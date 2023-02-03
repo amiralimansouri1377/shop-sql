@@ -33,7 +33,11 @@
             <div class="cart-cost">
               Cost: <strong>$<%= product.cartItem.cost %></strong>
             </div>
-            <a class="btn btn-outline-danger" href="#">Delete</a>
+            <a
+              class="btn btn-outline-danger"
+              href="/delete-cart/<%= product.id %>"
+              >Delete</a
+            >
           </div>
           <% }) %>
         </div>
