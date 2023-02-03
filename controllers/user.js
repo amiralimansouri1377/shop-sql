@@ -100,3 +100,37 @@ exports.getDeleteCart = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+exports.getAddOrder = (req, res, next) => {
+  req.user
+    .getCart()
+    .then(cart => {
+      return cart.getProducts();
+    })
+    .then(products => {
+      req.user
+        .createOrder()
+        .then(order => {
+          products.forEach(product => {
+            order.cost += product.cartItem.cost;
+          });
+          return order.save();
+        })
+        .then(order => {
+          return order.addProducts(
+            products.map(product => {
+              product.orderItem = {
+                quantity: product.cartItem.quantity,
+                cost: product.cartItem.cost,
+              };
+              return product;
+            })
+          );
+        })
+        .then(order => {
+          res.redirect('/');
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+};
